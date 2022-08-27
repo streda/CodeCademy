@@ -13,13 +13,17 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+
 const pAequorFactory = (specimenNum, dna) => {
   return {
     specimenNum: specimenNum,
     dna: dna,
+   
     mutate() {
       const currentBase = Math.floor(Math.random() * this.dna.length);
       const differentBase = returnRandBase();
+      
+      
       if (this.dna[currentBase] !== differentBase) {
         this.dna[currentBase] = differentBase;
       }
@@ -27,21 +31,21 @@ const pAequorFactory = (specimenNum, dna) => {
     },
 
     compareDNA(pAequor) {
-      const comparedElement = 0;
+      const comparableElement = 0;
       for (let i = 0; i < this.dna.length; i++) {
         if (this.dna[i] === pAequor.dna[i]) {
-          comparedElement++;
+          comparableElement++;
         }
       }
-      const percentage = ((comparedElement / this.dna.length) * 100).toFixed(2);
-      console.log(`specimen ${this.specimenNum} and specimen ${pAequor.specimenNum} have ${comparedElement} elements that have a ${percentage} % in common`);
+      const percentage = ((comparableElement / this.dna.length) * 100).toFixed(2);
+      console.log(`specimen ${this.specimenNum} and specimen ${pAequor.specimenNum} have ${comparableElement} elements that have a ${percentage} % in common`);
     },
     willLikelySurvive() {
       const eitherCorG = this.dna.filter(dnaLetter => dnaLetter === 'C' || dnaLetter === 'G');
       const cap = 0.6;
       let percentageOfEitherCorG = (eitherCorG / this.dna.length);
       if (percentageOfEitherCorG > cap) {
-        return true
+        return true;
       } else {
         return false;
       }
