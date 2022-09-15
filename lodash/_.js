@@ -93,6 +93,26 @@ const _ = {
     
     */
 
+    dropWhile(array, predicate){
+        let dropNumber = array.findIndex((element, index) => {
+            return !predicate(element, index, array);
+        });
+        let droppedArray = this.drop(array, dropNumber);
+        return droppedArray;
+    },
+    chunk(array, size){
+        if(size === undefined){
+            size = 1;
+        }
+        let arrayChunks = [];
+        for (let i = 0; i < array.length; i = i + size){
+            let arrayChunk = array.slice(i, i + size);
+            arrayChunks.push(arrayChunk);
+        }
+
+        return arrayChunks;
+    }
+
 };
 
 
